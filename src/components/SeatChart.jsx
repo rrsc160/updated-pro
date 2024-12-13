@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import './style.css';
 
 const SeatsIOChart = () => {
   const chartContainerRef = useRef(null);
@@ -54,7 +55,7 @@ const SeatsIOChart = () => {
           ],
           onObjectSelected: function (object) {
             console.log("Object selected:", object);
-            console.log('selectedSeats==>',selectedSeats)
+            console.log("selectedSeats==>", selectedSeats);
 
             setSelectedSeats((prevSeats) => [
               ...prevSeats,
@@ -62,7 +63,7 @@ const SeatsIOChart = () => {
                 id: object.id,
                 label: object.label || "N/A",
                 category: object?.category?.key || "N/A",
-                pricing: object?.category?.pricing?.price || "N/A", 
+                pricing: object?.category?.pricing?.price || "N/A",
               },
             ]);
           },
@@ -113,21 +114,25 @@ const SeatsIOChart = () => {
       ></div>
 
       {/* Display selected seats */}
-      <div className="selected-seats" style={{ width: "20%", padding: "10px" }}>
-        <h3>Selected Seats:</h3>
-        <ul>
-          {selectedSeats.length > 0 ? (
-            selectedSeats.map((seat) => (
-              <li key={seat.id}>
-                Seat {seat.id} - Category {seat.category} - Price: $
-                {seat.pricing}
-              </li>
-            ))
-          ) : (
-            <li>No seats selected</li>
-          )}
-        </ul>
-      </div>
+      <div className="selected-seats">
+  <h3>Selected Seats</h3>
+  <ul>
+    {selectedSeats.length > 0 ? (
+      selectedSeats.map((seat) => (
+        <li key={seat.id} className="seat-item">
+          <div className="seat-info">
+            <span className="seat-id">Seat {seat.id}</span>
+            <span className="seat-category">Category {seat.category}</span>
+            <span className="seat-price">Price: ${seat.pricing}</span>
+          </div>
+        </li>
+      ))
+    ) : (
+      <li>No seats selected</li>
+    )}
+  </ul>
+</div>
+
     </div>
   );
 };
