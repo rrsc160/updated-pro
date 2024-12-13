@@ -1,0 +1,11 @@
+/* App.css */
+.App {
+  text-align: center;
+  padding: 20px;
+  /* background-color: gray; */
+}
+
+button {
+  margin: 10px;
+  padding: 10px;
+}
